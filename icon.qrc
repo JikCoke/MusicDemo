@@ -1,0 +1,29 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icon/close.png</file>
+        <file>icon/collect_f.png</file>
+        <file>icon/collect_t.png</file>
+        <file>icon/find.png</file>
+        <file>icon/like_f.png</file>
+        <file>icon/like_t.png</file>
+        <file>icon/list.png</file>
+        <file>icon/min.png</file>
+        <file>icon/next.png</file>
+        <file>icon/play.png</file>
+        <file>icon/prev.png</file>
+        <file>icon/suspend.png</file>
+        <file>icon/volume.png</file>
+        <file>qss/style.qss</file>
+        <file>icon/播客.png</file>
+        <file>icon/上一曲1.png</file>
+        <file>icon/收藏.png</file>
+        <file>icon/下一曲1.png</file>
+        <file>icon/下载.png</file>
+        <file>icon/云盘.png</file>
+        <file>icon/暂停.png</file>
+        <file>icon/最近播放.png</file>
+        <file>icon/max.png</file>
+        <file>icon/close_hover.png</file>
+        <file>icon/min_hover.png</file>
+    </qresource>
+</RCC>
