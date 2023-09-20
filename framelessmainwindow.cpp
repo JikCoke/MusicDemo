@@ -6,6 +6,9 @@
 #ifdef Q_OS_WIN
 #include "windows.h"
 #include "windowsx.h"
+#include <dwmapi.h>
+#pragma comment (lib, "dwmapi.lib")
+#pragma comment (lib,"user32.lib")
 #endif
 
 #define TIMEMS qPrintable(QTime::currentTime().toString("HH:mm:ss zzz"))
@@ -31,7 +34,7 @@ FramelessMainWindow::FramelessMainWindow(QWidget *parent) : QMainWindow(parent)
 
     //设置背景透明 官方在5.3以后才彻底修复 WA_TranslucentBackground+FramelessWindowHint 并存不绘制的bug
 #if (QT_VERSION >= QT_VERSION_CHECK(5,3,0))
-    this->setAttribute(Qt::WA_TranslucentBackground);
+//    this->setAttribute(Qt::WA_TranslucentBackground);
 #endif
     //设置无边框属性
 //    this->setWindowFlags(flags | Qt::FramelessWindowHint);
@@ -45,6 +48,8 @@ FramelessMainWindow::FramelessMainWindow(QWidget *parent) : QMainWindow(parent)
     HWND hwnd = (HWND)this->winId();
     DWORD style = ::GetWindowLong(hwnd, GWL_STYLE);
     ::SetWindowLong(hwnd, GWL_STYLE, style | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CAPTION);
+    const MARGINS shadow = { 1, 1, 1, 1 };
+    DwmExtendFrameIntoClientArea(HWND(winId()), &shadow);
 #endif
 }
 
@@ -54,23 +59,6 @@ void FramelessMainWindow::showEvent(QShowEvent *event)
     setAttribute(Qt::WA_Mapped);
     QMainWindow::showEvent(event);
 }
-
-//void FramelessMainWindow::doResizeEvent(QEvent *event)
-//{
-//    //非最大化才能移动和拖动大小
-//    if (windowState() == Qt::WindowNoState) {
-//        qDebug() << "+++++++++++++++";
-//        moveEnable = true;
-//        resizeEnable = true;
-//    } else {
-//        qDebug() << "------------------";
-//        moveEnable = false;
-//        resizeEnable = false;
-//    }
-
-//    //发出最大化最小化等改变事件,以便界面上更改对应的信息比如右上角图标和文字
-//    emit windowStateChange(!moveEnable);
-//}
 
 bool FramelessMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *result)
 {
@@ -125,7 +113,6 @@ bool FramelessMainWindow::nativeEvent(const QByteArray &eventType, void *message
             if (titleBar && titleBar->rect().contains(pos)) {
                 QWidget *child = titleBar->childAt(pos);
                 if (!child) {
-                    qDebug() << "++++++++++++++";
                     *result = HTCAPTION;
                     return true;
                 }

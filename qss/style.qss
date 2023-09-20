@@ -1,4 +1,8 @@
 *{font-family: "Microsoft YaHei";}
+#left_menu
+{
+background:rgb(241, 249, 245);
+}
 QToolButton
 {
 min-height:30px;
@@ -24,14 +28,6 @@ MyTable
 {
 border:0px;
 }
-QWidget#MyMusic
-{
-background:white;
-}
-QWidget#title_widget
-{
-background:rgb(236, 65, 65);
-}
 QTabWidget::pane
 {
 top:10px;
@@ -46,10 +42,6 @@ padding-right:5px;
 min-width: 85px;
 min-height:30px;		
 }
-QWidget#widget_bg
-{
-background-color: rgb(255, 255, 255);
-}
 QTabBar::tab:selected
 {
 border-bottom: 3px solid rgb(236,65,65);
@@ -57,26 +49,23 @@ color: rgb(55,55,55);
 font-size:20px;
 font-weight: bold;
 }
-
 QListWidget
 {
-padding-top:13px;
+min-width:100px;
 border:0px;
 color:rgb(55,55,55);
-background:rgb(255,255,255);
-padding-left:15px;
+background:rgb(241, 249, 245);
 outline:0px;
 }
 QListWidget::Item
-{	
+{
 height:36;
-border:0px solid rgb(255,255,255);	
+border:0px solid rgb(255,255,255);
 padding-top:1px;
-
 }
 QListWidget::Item:hover
 {
-background:rgb(246,246,247);	
+background:rgb(227, 242, 235);
 }
 QListWidget::Item:selected
 {
@@ -84,7 +73,7 @@ font-size:16px;
 font-weight: bold;
 color:rgb(55,55,55);
 border:0px;
-background:rgb(246,246,247);	
+background:rgb(218, 239, 228);
 }
 QSlider::groove:horizontal {
 border: 0px solid #bbb;

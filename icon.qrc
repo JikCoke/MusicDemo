@@ -25,5 +25,6 @@
         <file>icon/max.png</file>
         <file>icon/close_hover.png</file>
         <file>icon/min_hover.png</file>
+        <file>icon/j.png</file>
     </qresource>
 </RCC>

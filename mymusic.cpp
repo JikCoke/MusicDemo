@@ -8,7 +8,6 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QFile>
-#include <QGraphicsDropShadowEffect>
 #include <QBitmap>
 #include <QPainter>
 #include "windows.h"
@@ -24,33 +23,11 @@ MyMusic::MyMusic(QWidget *parent)
 {
     ui->setupUi(this);
     setMinimumSize(900,700);
-    setAttribute(Qt::WA_TranslucentBackground, true);
-    setWindowFlags(Qt::FramelessWindowHint | Qt::Window);
-    QGraphicsDropShadowEffect* shadow = new QGraphicsDropShadowEffect(this);
-    shadow->setOffset(0, 0);
-    shadow->setColor(QColor("#444444"));
-    shadow->setBlurRadius(8);
-
-    ui->widget_bg->setGraphicsEffect(shadow);
-    ui->lay_bg->setMargin(10);
     setTitleBar(ui->title_widget);
     connect(ui->find_btn,&QToolButton::clicked,this,&MyMusic::on_FindBtn);
     connect(ui->myMusicList,&QListWidget::currentItemChanged,this,&MyMusic::on_myMusicList);
     connect(ui->close_btn,&QToolButton::clicked,this,&MyMusic::close);
     connect(ui->min_btn,&QToolButton::clicked,this,&MyMusic::showMinimized);
-    connect(ui->max_btn,&QToolButton::clicked,this,[&]()
-    {
-        if(windowState() & Qt::WindowMaximized)
-        {
-            ui->lay_bg->setMargin(8);
-            setWindowState(Qt::WindowNoState);
-        }
-        else
-        {
-            ui->lay_bg->setMargin(0);
-            setWindowState(Qt::WindowMaximized);
-        }
-    });
     connect(this,&MyMusic::titleDblClick,this,[&](){
         qDebug() << "放大";
         if (this->isMaximized()) {
